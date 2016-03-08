@@ -168,7 +168,17 @@ angular.module('ui.tinymce', [])
             parentElement.append($compile(clonedElement)(scope));
           }
         });
-
+	scope.$watch( function(){
+		return scope.$eval(attrs.ngFocus);
+	}, function(newVal){
+		if(newVal==true){
+			tinyMCE.get(attrs.id).focus();
+		}
+		else{
+			
+		}
+	});
+	
         scope.$on('$destroy', function() {
           ensureInstance();
 
